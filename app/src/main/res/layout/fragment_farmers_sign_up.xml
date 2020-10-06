@@ -9,39 +9,72 @@
     android:fitsSystemWindows="true">
 
     <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:paddingBottom="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        tools:context=".LoginActivity">
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:src="@drawable/icon_profile"
-            app:tint="@color/dark_grey" />
-
-        <TextView
-            android:id="@+id/welcome_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="Login to your account"
-            android:textColor="@color/dark_grey"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:typeface="serif" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/welcome_back"
             android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/transparent_rectangle"
+                android:textColorHint="@color/secondary_text"
+                app:startIconDrawable="@drawable/icon_person"
+                app:startIconTint="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_farmer_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="Full Name"
+                    android:inputType="text"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/dark_grey"
+                    android:textSize="15dp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/transparent_rectangle"
+                android:textColorHint="@color/secondary_text"
+                app:startIconDrawable="@drawable/icon_location"
+                app:startIconTint="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_farmer_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="County"
+                    android:inputType="text"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/dark_grey"
+                    android:textSize="15dp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -62,6 +95,34 @@
                     android:background="@null"
                     android:hint="Email Address"
                     android:inputType="textEmailAddress"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/dark_grey"
+                    android:textSize="15dp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/transparent_rectangle"
+                android:textColorHint="@color/secondary_text"
+                app:startIconDrawable="@drawable/icon_phone"
+                app:startIconTint="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_farmer_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="Phone Number"
+                    android:inputType="phone"
                     android:paddingLeft="10dp"
                     android:paddingTop="5dp"
                     android:textColor="@color/black"
@@ -97,35 +158,23 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/txt_forgot_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="20dp"
-                android:text="Forgot Password?"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:typeface="serif" />
-
         </LinearLayout>
 
         <Button
-            android:id="@+id/fab_login"
+            android:id="@+id/fab_create_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_input_layout"
             android:layout_margin="20dp"
             android:background="@drawable/gradient"
-            android:text="Login"
+            android:text="Create Account"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fab_login"
+            android:layout_below="@id/fab_create_account"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal">
 
@@ -134,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Don't have an account?"
+                android:text="Already have an account?"
                 android:textColor="@color/dark_grey"
                 android:textSize="15dp"
                 android:textStyle="bold"
@@ -145,7 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Register Here"
+                android:text="Login Here"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
                 android:textStyle="bold"

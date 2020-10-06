@@ -50,17 +50,17 @@ public class PickCropFragment extends Fragment {
 
     private void loadCrops(){
 
-            int[] cropImages = new int[]{
-                    R.drawable.skuma,
-                    R.drawable.cabbage,
-                    R.drawable.managu,
-                    R.drawable.passion,
-                    R.drawable.orange,
-                    R.drawable.skuma,
-                    R.drawable.cabbage,
-                    R.drawable.managu,
-                    R.drawable.passion,
-                    R.drawable.orange};
+        int[] cropImages = new int[]{
+                R.drawable.skuma,
+                R.drawable.cabbage,
+                R.drawable.managu,
+                R.drawable.passion,
+                R.drawable.orange,
+                R.drawable.skuma,
+                R.drawable.cabbage,
+                R.drawable.managu,
+                R.drawable.passion,
+                R.drawable.orange};
 
         PickCropData a = new PickCropData("Sukuma Wiki", cropImages[0]);
         cropList.add(a);
