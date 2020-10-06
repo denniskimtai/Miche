@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".CropDetailsActivity"></activity>
-        <activity android:name=".FarmersSignUpActivity" />
+        <activity android:name=".ServiceProviderHome"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".CropDetailsActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
