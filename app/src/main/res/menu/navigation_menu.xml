@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+    <item android:id="@+id/general_info"
+        android:title="General Info"/>
+
+    <item android:id="@+id/land_preparation"
+        android:title="Land Preparation"/>
+
+    <item android:id="@+id/soil"
+        android:title="Soil"/>
+
+    <item android:id="@+id/seed_rate"
+        android:title="Seed Rate"/>
+
+    <item android:id="@+id/cultural_practices"
+        android:title="Cultural Practices"/>
+
+    <item android:id="@+id/nutrition"
+        android:title="Nutrition"/>
+
+    <item android:id="@+id/crop"
+        android:title="Crop"/>
+
+    <item android:id="@+id/protection"
+        android:title="Protection"/>
+
+    <item android:id="@+id/harvest"
+        android:title="Harvest"/>
+
+    <item android:id="@+id/storage"
+        android:title="Storage"/>
+
+    <item android:id="@+id/market"
+        android:title="Market"/>
+
+    <item android:id="@+id/additional_resources"
+        android:title="Additional Resources"/>
+
+    </group>
+
+</menu>
+

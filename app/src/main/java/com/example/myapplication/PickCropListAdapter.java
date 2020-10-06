@@ -67,8 +67,8 @@ public class PickCropListAdapter extends RecyclerView.Adapter<PickCropListAdapte
             @Override
             public void onClick(View view) {
 
-//                Intent intent = new Intent(mContext, CropDetailsActivity.class);
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, CropDetailsActivity.class);
+                mContext.startActivity(intent);
 
             }
         });
