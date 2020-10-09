@@ -20,171 +20,118 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:inputType="text"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
+                android:drawableLeft="@drawable/icon_company"
+                android:drawablePadding="5sp"
                 android:textColorHint="@color/secondary_text"
-                app:startIconDrawable="@drawable/icon_person"
-                app:startIconTint="@color/colorPrimary">
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Company Name"
+                android:padding="10dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_farmer_full_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Company Name"
-                    android:inputType="text"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:inputType="text"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
+                android:drawableLeft="@drawable/icon_location"
+                android:drawablePadding="5sp"
                 android:textColorHint="@color/secondary_text"
-                app:startIconDrawable="@drawable/icon_location"
-                app:startIconTint="@color/colorPrimary">
+                android:drawableTint="@color/colorPrimary"
+                android:hint="County"
+                android:padding="10dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_farmer_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="County"
-                    android:inputType="text"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
+                android:drawableLeft="@drawable/icon_email"
+                android:drawablePadding="5sp"
                 android:textColorHint="@color/secondary_text"
-                app:startIconDrawable="@drawable/icon_email"
-                app:startIconTint="@color/colorPrimary">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Company Email Address"
-                    android:inputType="textEmailAddress"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Company Email Address"
+                android:padding="10dp" />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:inputType="phone"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
+                android:drawableLeft="@drawable/icon_phone"
+                android:drawablePadding="5sp"
                 android:textColorHint="@color/secondary_text"
-                app:startIconDrawable="@drawable/icon_phone"
-                app:startIconTint="@color/colorPrimary">
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Company Phone Number"
+                android:padding="10dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Company Phone Number"
-                    android:inputType="phone"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:inputType="text"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
+                android:drawableLeft="@drawable/icon_list"
+                android:drawablePadding="5sp"
                 android:textColorHint="@color/secondary_text"
-                app:startIconDrawable="@drawable/icon_list"
-                app:startIconTint="@color/colorPrimary">
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Service Category"
+                android:padding="10dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_service_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Category"
-                    android:inputType="text"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
-                app:startIconDrawable="@drawable/icon_password"
-                app:startIconTint="@color/colorPrimary"
-                android:textColorHint="@color/secondary_text">
+                android:drawableLeft="@drawable/icon_password"
+                android:drawablePadding="5sp"
+                android:textColorHint="@color/secondary_text"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Password"
+                android:padding="10dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/transparent_rectangle"
+                android:drawableLeft="@drawable/icon_password"
+                android:drawablePadding="5sp"
+                android:textColorHint="@color/secondary_text"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Confirm Password"
+                android:padding="10dp" />
 
         </LinearLayout>
 
@@ -214,8 +161,7 @@
                 android:text="Already have an account?"
                 android:textColor="@color/dark_grey"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txt_signup_here"
@@ -225,8 +171,7 @@
                 android:text="Login Here"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 

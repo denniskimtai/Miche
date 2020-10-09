@@ -30,84 +30,60 @@
             android:layout_below="@id/logo"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="Login to your account"
-            android:textColor="@color/dark_grey"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:typeface="serif" />
+            android:text="Welcome Back :)"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/welcome_back"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/edit_text_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/transparent_rectangle"
-                android:textColorHint="@color/secondary_text"
-                app:startIconDrawable="@drawable/icon_email"
-                app:startIconTint="@color/colorPrimary">
+                android:drawableLeft="@drawable/icon_email"
+                android:drawablePadding="5sp"
+                android:textSize="15dp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Email Address"
+                android:padding="10dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Email Address"
-                    android:inputType="textEmailAddress"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:textSize="15dp"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
-                app:startIconDrawable="@drawable/icon_password"
-                app:startIconTint="@color/colorPrimary"
-                android:textColorHint="@color/secondary_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/dark_grey"
-                    android:textSize="15dp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:drawableLeft="@drawable/icon_password"
+                android:drawablePadding="5sp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Password"
+                android:padding="10dp" />
 
             <TextView
                 android:id="@+id/txt_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:text="Forgot Password?"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -137,8 +113,7 @@
                 android:text="Don't have an account?"
                 android:textColor="@color/dark_grey"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txt_signup_here"
@@ -148,8 +123,7 @@
                 android:text="Register Here"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 

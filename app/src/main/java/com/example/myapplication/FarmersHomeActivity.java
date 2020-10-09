@@ -43,7 +43,7 @@ public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.
 
         //Adding the tabs name
         tabLayout.addTab(tabLayout.newTab().setText("Pick Crop"));
-        tabLayout.addTab(tabLayout.newTab().setText("Resources"));
+        tabLayout.addTab(tabLayout.newTab().setText("News"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 //        // hiding & showing the title when toolbar expanded & collapsed
@@ -89,13 +89,13 @@ public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.
 //            }
 //        });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
-    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

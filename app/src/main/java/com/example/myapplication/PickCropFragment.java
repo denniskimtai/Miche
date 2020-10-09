@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +35,7 @@ public class PickCropFragment extends Fragment {
         cropList = new ArrayList<>();
         pickCropListAdapter = new PickCropListAdapter(getActivity(), cropList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
 
         recyclerView.setAdapter(pickCropListAdapter);
@@ -57,6 +58,23 @@ public class PickCropFragment extends Fragment {
                 R.drawable.passion,
                 R.drawable.orange,
                 R.drawable.skuma,
+                R.drawable.cabbage,
+                R.drawable.managu,
+                R.drawable.passion,
+                R.drawable.orange,
+                R.drawable.cabbage,
+                R.drawable.managu,
+                R.drawable.passion,
+                R.drawable.orange,
+                R.drawable.cabbage,
+                R.drawable.managu,
+                R.drawable.passion,
+                R.drawable.orange,
+                R.drawable.skuma,
+                R.drawable.cabbage,
+                R.drawable.managu,
+                R.drawable.passion,
+                R.drawable.orange,
                 R.drawable.cabbage,
                 R.drawable.managu,
                 R.drawable.passion,
@@ -90,6 +108,57 @@ public class PickCropFragment extends Fragment {
         cropList.add(a);
 
         a = new PickCropData("Orange", cropImages[9]);
+        cropList.add(a);
+
+        a = new PickCropData("Cabbage", cropImages[10]);
+        cropList.add(a);
+
+        a = new PickCropData("Managu", cropImages[11]);
+        cropList.add(a);
+
+        a = new PickCropData("Passion", cropImages[12]);
+        cropList.add(a);
+
+        a = new PickCropData("Orange", cropImages[13]);
+        cropList.add(a);
+
+        a = new PickCropData("Cabbage", cropImages[14]);
+        cropList.add(a);
+
+        a = new PickCropData("Managu", cropImages[15]);
+        cropList.add(a);
+
+        a = new PickCropData("Passion", cropImages[16]);
+        cropList.add(a);
+
+        a = new PickCropData("Orange", cropImages[17]);
+        cropList.add(a);
+
+        a = new PickCropData("Sukuma Wiki", cropImages[18]);
+        cropList.add(a);
+
+        a = new PickCropData("Cabbage", cropImages[19]);
+        cropList.add(a);
+
+        a = new PickCropData("Managu", cropImages[20]);
+        cropList.add(a);
+
+        a = new PickCropData("Passion", cropImages[21]);
+        cropList.add(a);
+
+        a = new PickCropData("Orange", cropImages[22]);
+        cropList.add(a);
+
+        a = new PickCropData("Cabbage", cropImages[23]);
+        cropList.add(a);
+
+        a = new PickCropData("Managu", cropImages[24]);
+        cropList.add(a);
+
+        a = new PickCropData("Passion", cropImages[25]);
+        cropList.add(a);
+
+        a = new PickCropData("Orange", cropImages[26]);
         cropList.add(a);
 
         pickCropListAdapter.notifyDataSetChanged();

@@ -39,7 +39,7 @@
         android:title="Market"/>
 
     <item android:id="@+id/additional_resources"
-        android:title="Additional Resources"/>
+        android:title="Get Summary"/>
 
     </group>
 
