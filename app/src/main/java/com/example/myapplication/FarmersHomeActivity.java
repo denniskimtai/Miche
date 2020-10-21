@@ -4,16 +4,12 @@ import android.os.Bundle;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-import android.view.View;
-import android.view.Menu;
 import android.view.MenuItem;
 
 public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
