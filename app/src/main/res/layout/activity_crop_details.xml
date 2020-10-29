@@ -48,7 +48,7 @@
             android:id="@+id/arrow_back"
             android:layout_alignParentLeft="true"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:src="@drawable/icon_back_double"
             app:tint="@color/black" />
 
@@ -77,7 +77,7 @@
         <ImageView
             android:layout_alignParentRight="true"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:src="@drawable/icon_next_double"
             app:tint="@color/colorPrimary" />
 
@@ -137,7 +137,7 @@ Very low and very high soil pH will affect plant nutrients uptake from the soil.
 
     <TextView
         android:background="@color/tablayout_color"
-        android:padding="15dp"
+        android:padding="5dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

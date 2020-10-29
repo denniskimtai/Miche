@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:text="Welcome Rachel"
                         android:textColor="#FFC107"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -64,14 +64,14 @@
                         android:layout_height="wrap_content"
                         android:text="Rachel's Farm"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="13dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Uasin Gishu County"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
 
                 </LinearLayout>
@@ -92,10 +92,11 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="bottom"
                 android:background="@color/tablayout_color"
                 android:minHeight="?attr/actionBarSize"
+                app:tabTextAppearance="@style/MineCustomTabText"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:tabIndicatorColor="@color/black"
                 app:tabSelectedTextColor="@color/black"

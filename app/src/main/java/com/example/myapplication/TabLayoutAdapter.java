@@ -26,9 +26,14 @@ public class TabLayoutAdapter extends FragmentStatePagerAdapter {
             case 0:
                 PickCropFragment pickCropFragment = new PickCropFragment();
                 return pickCropFragment;
-            case 1:
+            case 2:
                 NewsFragment resourcesFragment = new NewsFragment();
                 return resourcesFragment;
+
+            case 1:
+                NewsFragment vendorsFragment = new NewsFragment();
+                return vendorsFragment;
+
             default:
                 return null;
         }

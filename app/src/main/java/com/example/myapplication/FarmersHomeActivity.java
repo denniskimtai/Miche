@@ -28,7 +28,7 @@ public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.
         //initialize views
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        final CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle("  ");
 
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
@@ -39,6 +39,7 @@ public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.
 
         //Adding the tabs name
         tabLayout.addTab(tabLayout.newTab().setText("Pick Crop"));
+        tabLayout.addTab(tabLayout.newTab().setText("Vendors"));
         tabLayout.addTab(tabLayout.newTab().setText("News"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -65,7 +66,7 @@ public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.
 
 
         //Initializing viewPager
-        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = findViewById(R.id.pager);
 
         //Creating our pager adapter
         TabLayoutAdapter adapter = new TabLayoutAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
