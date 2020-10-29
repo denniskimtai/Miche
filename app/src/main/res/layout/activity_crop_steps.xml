@@ -9,18 +9,35 @@
     android:weightSum="10">
 
     <RelativeLayout
-        android:background="@drawable/curved_background"
+        android:background="@drawable/passion"
         android:layout_weight="3"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
+
+<!--        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:id="@+id/cropImage"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:src="@drawable/passion"-->
+<!--            app:civ_border_color="#FF000000" />-->
+
         <TextView
+            android:layout_marginLeft="10dp"
             android:id="@+id/textGrid"
-            android:textSize="34sp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/white"
-            android:text="Cabbage"
-            android:layout_centerHorizontal="true"
+            android:textSize="15dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorPrimary"
+            android:text="Purple Passion"
+            android:background="@drawable/textview_curved_background"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -30,7 +47,7 @@
         android:id="@+id/mainGrid"
         android:rowCount="3"
         android:columnCount="3"
-        android:layout_marginTop="-70dp"
+        android:layout_marginTop="-50dp"
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="false"
         android:layout_weight="8"
@@ -58,16 +75,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/soil_testing_icon"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="General Info"
+                    android:text="Soil Testing"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,16 +113,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/land_preping_icon"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Land Preparation"
+                    android:text="Land Preping"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,16 +153,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/planting_material_icon"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Land Preparation"
+                    android:text="Planting Material"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,16 +194,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/crop_nutrition"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Soil"
+                    android:text="Crop Nutrition"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,6 +216,7 @@
         <!-- COLUMN 2  -->
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/colorPrimary"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -215,17 +233,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Lima Smart"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/logo"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_height="50dp"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Seed Rate"
-                    android:textColor="#000"
-                    android:textSize="15sp"
+                    android:text="Agronomic Services"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -256,16 +285,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/crop_protection_icon"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Seed Rate"
+                    android:text="Crop Protection"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -293,16 +322,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/harvest_icon"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Seed Rate"
+                    android:text="Harvest and Post Harvest"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -334,16 +363,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/markets_icon"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Cultural Practices"
+                    android:text="Markets"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -374,16 +403,16 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/icon_holder"
+                    android:src="@drawable/get_summary_icon"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="50dp"
+                    android:layout_width="60dp"
                     android:layout_height="50dp" />
 
                 <TextView
                     android:textAlignment="center"
-                    android:text="Nutrition"
+                    android:text="Get Summary"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

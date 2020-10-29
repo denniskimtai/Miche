@@ -9,10 +9,10 @@
     android:fitsSystemWindows="true">
 
     <RelativeLayout
-        android:layout_marginTop="20dp"
-        android:paddingBottom="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="30dp">
 
         <LinearLayout
             android:id="@+id/text_input_layout"
@@ -21,126 +21,129 @@
             android:orientation="vertical">
 
             <EditText
-                android:inputType="text"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_company"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Company Name"
-                android:padding="10dp" />
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="text"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_location"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="County"
-                android:padding="10dp" />
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="textEmailAddress"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_email"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Company Email Address"
-                android:padding="10dp" />
+                android:inputType="textEmailAddress"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
 
             <EditText
-                android:inputType="phone"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_phone"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Company Phone Number"
-                android:padding="10dp" />
+                android:inputType="phone"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="text"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_list"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Service Category"
-                android:padding="10dp" />
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_password"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Password"
-                android:padding="10dp" />
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_password"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Confirm Password"
-                android:padding="10dp" />
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/fab_create_account"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_below="@id/text_input_layout"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/gradient"
             android:text="Create Account"
             android:textAllCaps="false"
@@ -157,7 +160,7 @@
                 android:id="@+id/txt_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:text="Already have an account?"
                 android:textColor="@color/dark_grey"
                 android:textSize="15dp"
@@ -167,7 +170,7 @@
                 android:id="@+id/txt_signup_here"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:text="Login Here"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"

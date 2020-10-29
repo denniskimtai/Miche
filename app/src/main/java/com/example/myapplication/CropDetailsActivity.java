@@ -9,84 +9,62 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class CropDetailsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    private AppBarConfiguration mAppBarConfiguration;
+public class CropDetailsActivity extends AppCompatActivity {
+
+    private List<ServiceProviderData> serviceProviderDataList;
+    private RecyclerView recyclerView;
+    private ServiceProviderListAdapter serviceProviderListAdapter;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_details);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Downloading PDF...", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        //initialize views
+        recyclerView = findViewById(R.id.recyclerView);
+        serviceProviderDataList = new ArrayList<>();
+        serviceProviderListAdapter = new ServiceProviderListAdapter(this, serviceProviderDataList);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        recyclerView.setAdapter(serviceProviderListAdapter);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-
-        //add this line to display menu1 when the activity is loaded
-        displaySelectedScreen(R.id.general_info);
+        loadNews();
 
     }
 
+    private void loadNews() {
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int[] serviceProviderImages = new int[]{
+                R.drawable.book,
+                R.drawable.book2
+        };
 
-        //calling the method displayselectedscreen and passing the id of selected menu
-        displaySelectedScreen(item.getItemId());
-        //make this method blank
-        return true;
+        ServiceProviderData a = new ServiceProviderData("Soil Cares", "Ainabkoi","pH" ,serviceProviderImages[0]);
+        serviceProviderDataList.add(a);
 
-    }
+        a = new ServiceProviderData("Lima Smart", "Kenmosa", "Sampling" , serviceProviderImages[1]);
+        serviceProviderDataList.add(a);
 
-    private void displaySelectedScreen(int itemId) {
+        a = new ServiceProviderData("Cropnuts", "Kapseret", "Testing" , serviceProviderImages[0]);
+        serviceProviderDataList.add(a);
 
-        //creating fragment object
-        Fragment fragment = null;
+        serviceProviderListAdapter.notifyDataSetChanged();
 
-        //initializing the fragment object which is selected
-        switch (itemId) {
-            case R.id.general_info:
-                fragment = new GeneralInfoFragment();
-                break;
-            case R.id.land_preparation:
-
-                break;
-
-        }
-
-        //replacing the fragment
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
     }
 
 }

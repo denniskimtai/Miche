@@ -5,32 +5,32 @@
 
     <group android:checkableBehavior="single">
 
-    <item android:id="@+id/general_info"
-        android:title="General Info"/>
+    <item android:id="@+id/soil_testing"
+        android:title="Soil Testing"/>
 
     <item android:id="@+id/land_preparation"
         android:title="Land Preparation"/>
 
-    <item android:id="@+id/soil"
-        android:title="Soil"/>
+    <item android:id="@+id/planting_material"
+        android:title="Planting Materials"/>
 
     <item android:id="@+id/seed_rate"
         android:title="Seed Rate"/>
 
-    <item android:id="@+id/cultural_practices"
-        android:title="Cultural Practices"/>
+    <item android:id="@+id/crop_nutrition"
+        android:title="Crop Nutrition"/>
 
-    <item android:id="@+id/nutrition"
-        android:title="Nutrition"/>
+    <item android:id="@+id/crop_protection"
+        android:title="Crop Protection"/>
 
-    <item android:id="@+id/crop"
-        android:title="Crop"/>
+    <item android:id="@+id/agronomic_support"
+        android:title="Agronomic Support"/>
 
-    <item android:id="@+id/protection"
-        android:title="Protection"/>
+    <item android:id="@+id/harvest_postHarvest"
+        android:title="Harvest and Post Harvest"/>
 
-    <item android:id="@+id/harvest"
-        android:title="Harvest"/>
+    <item android:id="@+id/markets"
+        android:title="Markets"/>
 
     <item android:id="@+id/storage"
         android:title="Storage"/>

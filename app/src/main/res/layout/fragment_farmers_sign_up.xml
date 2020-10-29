@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fitsSystemWindows="true">
 
     <RelativeLayout
-        android:layout_marginTop="20dp"
-        android:paddingBottom="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="30dp">
 
         <LinearLayout
             android:id="@+id/text_input_layout"
@@ -23,127 +21,127 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:orientation="horizontal">
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:textColorHint="@color/secondary_text"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:inputType="text"
-                android:background="@drawable/transparent_rectangle"
-                android:drawableLeft="@drawable/icon_person"
-                android:drawablePadding="8sp"
-                android:drawableTint="@color/colorPrimary"
-                android:hint="First Name"
-                android:padding="10dp" />
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <EditText
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:textColorHint="@color/secondary_text"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/transparent_rectangle"
+                    android:drawableLeft="@drawable/icon_person"
+                    android:drawablePadding="8sp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:hint="First Name"
                     android:inputType="text"
+                    android:padding="5dp"
+                    android:textColorHint="@color/secondary_text"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     android:background="@drawable/transparent_rectangle"
                     android:hint="Last Name"
-                    android:padding="11dp" />
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColorHint="@color/secondary_text"
+                    android:textSize="12dp" />
 
             </LinearLayout>
 
             <EditText
-                android:inputType="text"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_location"
                 android:drawablePadding="5sp"
-                android:textColorHint="@color/secondary_text"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="County"
-                android:padding="10dp" />
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="textEmailAddress"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:textColorHint="@color/secondary_text"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_email"
                 android:drawablePadding="5sp"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Email Address"
-                android:padding="10dp" />
+                android:inputType="textEmailAddress"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="phone"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:textColorHint="@color/secondary_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_phone"
                 android:drawablePadding="5sp"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Phone Number"
-                android:padding="10dp" />
+                android:inputType="phone"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:textColorHint="@color/secondary_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_password"
                 android:drawablePadding="5sp"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Password"
-                android:padding="10dp" />
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
             <EditText
-                android:inputType="textPassword"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:textColorHint="@color/secondary_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/transparent_rectangle"
                 android:drawableLeft="@drawable/icon_password"
                 android:drawablePadding="5sp"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="Confirm Password"
-                android:padding="10dp" />
+                android:inputType="textPassword"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/fab_create_account"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_below="@id/text_input_layout"
             android:layout_margin="20dp"
             android:background="@drawable/gradient"

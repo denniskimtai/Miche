@@ -1,32 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/layout_next"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/arrow_back"
+            android:layout_alignParentLeft="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_arrow_back"
+            app:tint="@color/black" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:src="@drawable/soil_testing_icon"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="40dp"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Soil Testing"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_arrow_forward"
+            app:tint="@color/colorPrimary" />
+
+    </RelativeLayout>
+
     <TextView
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/layout_next"
         android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. wn printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with "
+        android:text="Take your soil sample to test for pH, nutrients level and where possible pest and diseases.
+This is important because it will determine the feeding and crop protection regiments for the plant.
+Very low and very high soil pH will affect plant nutrients uptake from the soil."
         android:id="@+id/textView"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_below="@id/textView"
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#0475A8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Testing"
+        android:background="@drawable/tags_background"
+        android:id="@+id/textViewTags"
         android:textSize="12dp" />
 
     <TextView
         android:background="@color/tablayout_color"
         android:padding="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Service Providers"
-        android:layout_below="@id/textView"
+        android:layout_below="@id/textViewTags"
         android:textStyle="bold"
         android:id="@+id/textView2"
-        android:textSize="18dp" />
+        android:textSize="15dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="8dp"

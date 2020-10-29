@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +17,10 @@ import java.util.List;
 
 public class GeneralInfoFragment extends Fragment {
 
-    private List<NewsData> newsDataList;
+    private List<ServiceProviderData> serviceProviderDataList;
     private RecyclerView recyclerView;
-    private NewsAdapter newsAdapter;
+    private ServiceProviderListAdapter serviceProviderListAdapter;
+    private TextView textView;
 
     @Nullable
     @Override
@@ -28,13 +30,13 @@ public class GeneralInfoFragment extends Fragment {
 
         //initialize views
         recyclerView = myView.findViewById(R.id.recyclerView);
-        newsDataList = new ArrayList<>();
-        newsAdapter = new NewsAdapter(getActivity(), newsDataList);
+        serviceProviderDataList = new ArrayList<>();
+        serviceProviderListAdapter = new ServiceProviderListAdapter(getActivity(), serviceProviderDataList);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
-        recyclerView.setAdapter(newsAdapter);
+        recyclerView.setAdapter(serviceProviderListAdapter);
 
         loadNews();
 
@@ -43,18 +45,21 @@ public class GeneralInfoFragment extends Fragment {
 
     private void loadNews() {
 
-        int[] newsImages = new int[]{
+        int[] serviceProviderImages = new int[]{
                 R.drawable.book,
                 R.drawable.book2
         };
 
-        NewsData a = new NewsData("Sygenta", "Uasin Gishu-Moiben", newsImages[0]);
-        newsDataList.add(a);
+        ServiceProviderData a = new ServiceProviderData("Soil Cares", "Ainabkoi","pH" ,serviceProviderImages[0]);
+        serviceProviderDataList.add(a);
 
-        a = new NewsData("Horti Grid", "Nairobi County-Utawala", newsImages[1]);
-        newsDataList.add(a);
+        a = new ServiceProviderData("Lima Smart", "Kenmosa", "Sampling" , serviceProviderImages[1]);
+        serviceProviderDataList.add(a);
 
-        newsAdapter.notifyDataSetChanged();
+        a = new ServiceProviderData("Cropnuts", "Kapseret", "Testing" , serviceProviderImages[0]);
+        serviceProviderDataList.add(a);
+
+        serviceProviderListAdapter.notifyDataSetChanged();
 
     }
 
