@@ -1,9 +1,17 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,8 +20,17 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,21 +41,28 @@ public class PickCropFragment extends Fragment {
     private RecyclerView recyclerView;
     private PickCropListAdapter pickCropListAdapter;
 
+    private ProgressDialog progressDialog;
+
+    private AlertDialog.Builder alertDialogBuilder;
+
+    private static final String URL_CROP = "http://limasmart.zuriservices.com/limasmart_app/fetch_crops.php";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View myView = inflater.inflate(R.layout.fragment_pick_crop, container, false);
 
+        progressDialog = new ProgressDialog(getActivity());
+
+        alertDialogBuilder = new AlertDialog.Builder(getActivity());
+
         //initialize views
         recyclerView = myView.findViewById(R.id.recyclerView);
         cropList = new ArrayList<>();
-        pickCropListAdapter = new PickCropListAdapter(getActivity(), cropList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
-
-        recyclerView.setAdapter(pickCropListAdapter);
 
         loadCrops();
 
@@ -47,121 +71,102 @@ public class PickCropFragment extends Fragment {
     }
 
 
-
-
     private void loadCrops(){
 
-        int[] cropImages = new int[]{
-                R.drawable.skuma,
-                R.drawable.cabbage,
-                R.drawable.managu,
-                R.drawable.passion,
-                R.drawable.orange,
-                R.drawable.skuma,
-                R.drawable.cabbage,
-                R.drawable.managu,
-                R.drawable.passion,
-                R.drawable.orange,
-                R.drawable.cabbage,
-                R.drawable.managu,
-                R.drawable.passion,
-                R.drawable.orange,
-                R.drawable.cabbage,
-                R.drawable.managu,
-                R.drawable.passion,
-                R.drawable.orange,
-                R.drawable.skuma,
-                R.drawable.cabbage,
-                R.drawable.managu,
-                R.drawable.passion,
-                R.drawable.orange,
-                R.drawable.cabbage,
-                R.drawable.managu,
-                R.drawable.passion,
-                R.drawable.orange};
+        progressDialog.setMessage("Loading crops...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
-        PickCropData a = new PickCropData("Sukuma Wiki", cropImages[0]);
-        cropList.add(a);
+        //check if network is connected
+        if (!isNetworkAvailable()){
+            progressDialog.dismiss();
 
-        a = new PickCropData("Cabbage", cropImages[1]);
-        cropList.add(a);
+            alertDialogBuilder.setTitle("Network Failure");
+            alertDialogBuilder.setMessage("Please check your internet connection!");
+            alertDialogBuilder.setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-        a = new PickCropData("Managu", cropImages[2]);
-        cropList.add(a);
+                    loadCrops();
 
-        a = new PickCropData("Passion", cropImages[3]);
-        cropList.add(a);
+                }
+            });
+            alertDialogBuilder.setCancelable(false);
+            alertDialogBuilder.show();
+            return;
+        }
 
-        a = new PickCropData("Orange", cropImages[4]);
-        cropList.add(a);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_CROP,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
 
-        a = new PickCropData("Sukuma Wiki", cropImages[5]);
-        cropList.add(a);
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
 
-        a = new PickCropData("Cabbage", cropImages[6]);
-        cropList.add(a);
+                                //getting product object from json array
+                                JSONObject product = array.getJSONObject(i);
 
-        a = new PickCropData("Managu", cropImages[7]);
-        cropList.add(a);
+                                String cropName = product.getString("cropName");
+                                String cropImage = product.getString("cropImage");
+                                int id = Integer.parseInt(product.getString("id"));
+                                String general_info = product.getString("general_info");
 
-        a = new PickCropData("Passion", cropImages[8]);
-        cropList.add(a);
+                                PickCropData pickCropData = new PickCropData(cropName, cropImage, id, general_info);
+                                cropList.add(pickCropData);
 
-        a = new PickCropData("Orange", cropImages[9]);
-        cropList.add(a);
+                            }
 
-        a = new PickCropData("Cabbage", cropImages[10]);
-        cropList.add(a);
+                            //creating adapter object and setting it to recyclerview
+                            pickCropListAdapter = new PickCropListAdapter(getActivity(), cropList);
+                            recyclerView.setAdapter(pickCropListAdapter);
 
-        a = new PickCropData("Managu", cropImages[11]);
-        cropList.add(a);
+                            progressDialog.dismiss();
 
-        a = new PickCropData("Passion", cropImages[12]);
-        cropList.add(a);
 
-        a = new PickCropData("Orange", cropImages[13]);
-        cropList.add(a);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-        a = new PickCropData("Cabbage", cropImages[14]);
-        cropList.add(a);
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-        a = new PickCropData("Managu", cropImages[15]);
-        cropList.add(a);
+                        progressDialog.dismiss();
+                        alertDialogBuilder.setTitle("Error occurred");
+                        alertDialogBuilder.setMessage("Please ensure you have stable internet connection!");
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-        a = new PickCropData("Passion", cropImages[16]);
-        cropList.add(a);
+                                loadCrops();
+                            }
+                        });
 
-        a = new PickCropData("Orange", cropImages[17]);
-        cropList.add(a);
+                        alertDialogBuilder.show();
 
-        a = new PickCropData("Sukuma Wiki", cropImages[18]);
-        cropList.add(a);
+                    }
+                });
 
-        a = new PickCropData("Cabbage", cropImages[19]);
-        cropList.add(a);
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(getActivity()).add(stringRequest);
 
-        a = new PickCropData("Managu", cropImages[20]);
-        cropList.add(a);
 
-        a = new PickCropData("Passion", cropImages[21]);
-        cropList.add(a);
 
-        a = new PickCropData("Orange", cropImages[22]);
-        cropList.add(a);
 
-        a = new PickCropData("Cabbage", cropImages[23]);
-        cropList.add(a);
+    }
 
-        a = new PickCropData("Managu", cropImages[24]);
-        cropList.add(a);
-
-        a = new PickCropData("Passion", cropImages[25]);
-        cropList.add(a);
-
-        a = new PickCropData("Orange", cropImages[26]);
-        cropList.add(a);
-
-        pickCropListAdapter.notifyDataSetChanged();
-
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        @SuppressLint("MissingPermission") NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

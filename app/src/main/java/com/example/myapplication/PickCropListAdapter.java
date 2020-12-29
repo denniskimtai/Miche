@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,7 +65,7 @@ public class PickCropListAdapter extends RecyclerView.Adapter<PickCropListAdapte
 
         holder.cropName.setText(pickCropData.getCropName());
         //load image using glide
-        Glide.with(mContext).load(pickCropData.getCropImage()).into(holder.cropImage);
+        Glide.with(mContext).load(R.drawable.passion).into(holder.cropImage);
 
         //onclick listener for one item in the recycler view
         crop_item_layout.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +73,10 @@ public class PickCropListAdapter extends RecyclerView.Adapter<PickCropListAdapte
             public void onClick(View view) {
 
                 Intent intent = new Intent(mContext, CropStepsActivity.class);
+                intent.putExtra("crop_id", pickCropData.getCropId());
+                intent.putExtra("crop_name", pickCropData.getCropName());
+                intent.putExtra("general_info", pickCropData.getGeneral_info());
+
                 mContext.startActivity(intent);
 
             }

@@ -58,6 +58,7 @@
                 android:padding="10dp" />
 
             <EditText
+                android:id="@+id/edit_text_password"
                 android:textSize="15dp"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
