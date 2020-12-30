@@ -3,16 +3,16 @@ package com.example.myapplication;
 public class ServiceProviderData {
 
     private String serviceProviderName;
-    private String serviceProviderLocation;
-    private String serviceProviderTags;
+    private String serviceProviderCounty;
+    private String serviceProviderSubCounty;
     private int serviceProviderImage;
     private Boolean selected = false;
 
 
-    public ServiceProviderData(String serviceProviderName, String serviceProviderLocation, String serviceProviderTags, int serviceProviderImage) {
+    public ServiceProviderData(String serviceProviderName, String serviceProviderCounty, String serviceProviderSubCounty, int serviceProviderImage) {
         this.serviceProviderName = serviceProviderName;
-        this.serviceProviderLocation = serviceProviderLocation;
-        this.serviceProviderTags = serviceProviderTags;
+        this.serviceProviderCounty = serviceProviderCounty;
+        this.serviceProviderSubCounty = serviceProviderSubCounty;
         this.serviceProviderImage = serviceProviderImage;
     }
 
@@ -24,20 +24,20 @@ public class ServiceProviderData {
         this.serviceProviderName = serviceProviderName;
     }
 
-    public String getServiceProviderLocation() {
-        return serviceProviderLocation;
+    public String getServiceProviderCounty() {
+        return serviceProviderCounty;
     }
 
-    public void setServiceProviderLocation(String serviceProviderLocation) {
-        this.serviceProviderLocation = serviceProviderLocation;
+    public void setServiceProviderCounty(String serviceProviderCounty) {
+        this.serviceProviderCounty = serviceProviderCounty;
     }
 
-    public String getServiceProviderTags() {
-        return serviceProviderTags;
+    public String getServiceProviderSubCounty() {
+        return serviceProviderSubCounty;
     }
 
-    public void setServiceProviderTags(String serviceProviderTags) {
-        this.serviceProviderTags = serviceProviderTags;
+    public void setServiceProviderSubCounty(String serviceProviderSubCounty) {
+        this.serviceProviderSubCounty = serviceProviderSubCounty;
     }
 
     public int getServiceProviderImage() {

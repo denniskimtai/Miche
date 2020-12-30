@@ -19,7 +19,7 @@
         <activity android:name=".ServiceProviderHome" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".CropDetailsActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".FarmersHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FarmersHomeActivity"
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

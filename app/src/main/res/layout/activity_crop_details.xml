@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -26,6 +25,7 @@
             app:civ_border_color="#FF000000" />
 
         <TextView
+            android:id="@+id/crop_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -38,17 +38,17 @@
     <RelativeLayout
         android:id="@+id/layout_next"
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
-        android:layout_height="wrap_content">
+        android:layout_marginBottom="10dp">
 
         <ImageView
             android:id="@+id/arrow_back"
-            android:layout_alignParentLeft="true"
             android:layout_width="30dp"
             android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
             android:src="@drawable/icon_back_double"
             app:tint="@color/black" />
 
@@ -58,41 +58,40 @@
             android:layout_centerInParent="true"
             android:orientation="horizontal">
 
-            <ImageView
-                android:src="@drawable/soil_testing_icon"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="40dp"
-                android:layout_height="30dp" />
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:src="@drawable/soil_testing_icon" />-->
 
             <TextView
+                android:id="@+id/step_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Soil Analysis"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <ImageView
-            android:layout_alignParentRight="true"
             android:layout_width="30dp"
             android:layout_height="25dp"
+            android:layout_alignParentRight="true"
             android:src="@drawable/icon_next_double"
             app:tint="@color/colorPrimary" />
 
     </RelativeLayout>
 
     <TextView
-        android:layout_below="@id/layout_next"
-        android:layout_marginLeft="5dp"
+        android:id="@+id/stepDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/layout_next"
+        android:layout_marginLeft="5dp"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Take your soil sample to test for pH, nutrients level and where possible pest and diseases.
-This is important because it will determine the feeding and crop protection regiments for the plant.
-Very low and very high soil pH will affect plant nutrients uptake from the soil."
-        android:id="@+id/textView"
         android:textSize="12dp" />
 
     <LinearLayout
@@ -100,64 +99,49 @@ Very low and very high soil pH will affect plant nutrients uptake from the soil.
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <TextView
-        android:layout_below="@id/textView"
-        android:layout_marginTop="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Sampling"
-        android:background="@drawable/tags_background"
-        android:id="@+id/textViewTags"
-        android:textSize="12dp" />
-
-        <TextView
-            android:layout_below="@id/textView"
-            android:layout_marginTop="10dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:layout_marginLeft="5dp"
-            android:paddingRight="10dp"
-            android:textColor="@color/colorPrimary"
+        <!--Recycler View widget-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tagsRecyclerview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Testing"
-            android:background="@drawable/tags_background"
-            android:id="@+id/textViewTags2"
-            android:textSize="12dp" />
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 
     <TextView
-        android:background="@color/tablayout_color"
-        android:padding="5dp"
-        android:layout_marginTop="10dp"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Service Providers"
         android:layout_below="@id/textViewTags"
-        android:textStyle="bold"
-        android:id="@+id/textView2"
+        android:layout_marginTop="10dp"
+        android:background="@color/tablayout_color"
+        android:padding="5dp"
+        android:text="Service Providers"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/no_service_providers"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:text="No service providers available"
+        android:textColor="@color/secondary_text"
         android:textSize="15dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="8dp"
-        android:layout_below="@id/textView2"
+        android:visibility="gone"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:id="@+id/recyclerView">
+        android:layout_below="@id/textView2"
+        android:layout_marginTop="8dp"
+        android:scrollbars="vertical">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 
 
 </LinearLayout>

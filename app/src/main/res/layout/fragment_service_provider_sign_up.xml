@@ -21,6 +21,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/txt_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -37,6 +38,7 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:id="@+id/txt_county"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -53,6 +55,24 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:id="@+id/txt_sub_county"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/transparent_rectangle"
+                android:drawableLeft="@drawable/icon_location"
+                android:drawablePadding="5sp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="Sub County"
+                android:inputType="text"
+                android:padding="5dp"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="12dp" />
+
+            <EditText
+                android:id="@+id/txt_email_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -66,10 +86,11 @@
                 android:inputType="textEmailAddress"
                 android:padding="5dp"
                 android:textColorHint="@color/secondary_text"
-                android:textSize="12dp" />
+                android:textSize="12dp"/>
 
 
             <EditText
+                android:id="@+id/txt_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -86,6 +107,7 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:id="@+id/txt_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -102,6 +124,7 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:id="@+id/txt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -118,6 +141,7 @@
                 android:textSize="12dp" />
 
             <EditText
+                android:id="@+id/txt_confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -141,8 +165,8 @@
             android:layout_height="40dp"
             android:layout_below="@id/text_input_layout"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/gradient"
             android:text="Create Account"

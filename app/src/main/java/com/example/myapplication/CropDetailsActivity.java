@@ -20,6 +20,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +48,7 @@ public class CropDetailsActivity extends AppCompatActivity {
     private List<tags> tagsList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ServiceProviderListAdapter serviceProviderListAdapter;
-    private TextView stepTitle, stepDesc, cropName;
+    private TextView stepTitle, stepDesc, cropName, txtNoServiceProviders;
 
     private String stepDescriptionText, stepNameText, crop_name, stepId, crop_id;
 
@@ -57,6 +59,7 @@ public class CropDetailsActivity extends AppCompatActivity {
     private HorizontalTagsAdapter horizontalTagsAdapter;
 
     private final String URL_TAGS = "http://limasmart.zuriservices.com/limasmart_app/get_tags.php";
+    private final String URL_SERVICE_PROVIDERS = "http://limasmart.zuriservices.com/limasmart_app/get_service_providers.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,8 @@ public class CropDetailsActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         alertDialogBuilder = new android.app.AlertDialog.Builder(this);
+
+        txtNoServiceProviders = findViewById(R.id.no_service_providers);
 
         tagsRecyclerView = findViewById(R.id.tagsRecyclerview);
         RecyclerView.LayoutManager tagsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -94,8 +99,6 @@ public class CropDetailsActivity extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        recyclerView.setAdapter(serviceProviderListAdapter);
-
         stepTags();
         loadNews();
 
@@ -103,21 +106,111 @@ public class CropDetailsActivity extends AppCompatActivity {
 
     private void loadNews() {
 
-        int[] serviceProviderImages = new int[]{
-                R.drawable.book,
-                R.drawable.book2
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        //check if network is connected
+        if (!isNetworkAvailable()){
+            progressDialog.dismiss();
+
+            alertDialogBuilder.setTitle("Network Failure");
+            alertDialogBuilder.setMessage("Please check your internet connection!");
+            alertDialogBuilder.setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    loadNews();
+
+                }
+            });
+            alertDialogBuilder.setCancelable(false);
+            alertDialogBuilder.show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SERVICE_PROVIDERS,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+
+                            if (array.length()>0){
+
+                                txtNoServiceProviders.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
+
+                                //traversing through all the object
+                                for (int i = 0; i < array.length(); i++) {
+
+                                    //getting product object from json array
+                                    JSONObject product = array.getJSONObject(i);
+
+                                    String serviceProviderId = product.getString("serviceProviderId");
+                                    String emailAddress = product.getString("emailAddress");
+                                    String phoneNumber = product.getString("phoneNumber");
+                                    String subCounty = product.getString("subCounty");
+                                    String companyName = product.getString("companyName");
+                                    String county = product.getString("county");
+
+                                    ServiceProviderData serviceProviderData = new ServiceProviderData(companyName, county, subCounty, Integer.parseInt(serviceProviderId));
+                                    serviceProviderDataList.add(serviceProviderData);
+                                }
+
+                                serviceProviderListAdapter = new ServiceProviderListAdapter(CropDetailsActivity.this, serviceProviderDataList);
+                                recyclerView.setAdapter(serviceProviderListAdapter);
+                                progressDialog.dismiss();
+
+                            }else{
+
+                                txtNoServiceProviders.setVisibility(View.VISIBLE);
+                                recyclerView.setVisibility(View.GONE);
+
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        progressDialog.dismiss();
+                        alertDialogBuilder.setTitle("Error occurred");
+                        alertDialogBuilder.setMessage("Please ensure you have stable internet connection!" + error.getMessage());
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setPositiveButton("Try again", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                loadNews();
+                            }
+                        });
+
+                        alertDialogBuilder.show();
+
+                    }
+                }){
+            //send params needed to db
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("step_id", stepId);
+
+                return params;
+
+            }
         };
 
-        ServiceProviderData a = new ServiceProviderData("Soil Cares", "Ainabkoi","pH" ,serviceProviderImages[0]);
-        serviceProviderDataList.add(a);
-
-        a = new ServiceProviderData("Lima Smart", "Kenmosa", "Sampling" , serviceProviderImages[1]);
-        serviceProviderDataList.add(a);
-
-        a = new ServiceProviderData("Cropnuts", "Kapseret", "Testing" , serviceProviderImages[0]);
-        serviceProviderDataList.add(a);
-
-        serviceProviderListAdapter.notifyDataSetChanged();
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(this).add(stringRequest);
 
     }
 
@@ -225,5 +318,7 @@ public class CropDetailsActivity extends AppCompatActivity {
                 .getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+
 
 }

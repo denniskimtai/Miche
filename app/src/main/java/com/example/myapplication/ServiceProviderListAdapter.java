@@ -6,11 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -71,8 +69,8 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<ServiceProv
         final ServiceProviderData serviceProviderData = serviceProviderDataList.get(position);
 
         holder.serviceProviderName.setText(serviceProviderData.getServiceProviderName());
-        holder.serviceProviderLocation.setText(serviceProviderData.getServiceProviderLocation());
-        holder.serviceProviderTags.setText(serviceProviderData.getServiceProviderTags());
+        holder.serviceProviderLocation.setText(serviceProviderData.getServiceProviderCounty());
+        holder.serviceProviderTags.setText(serviceProviderData.getServiceProviderSubCounty());
 
         holder.cardLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +95,7 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<ServiceProv
         });
 
         //load image using glide
-        Glide.with(mContext).load(serviceProviderData.getServiceProviderImage()).into(holder.serviceProviderImage);
+        Glide.with(mContext).load(R.drawable.book).into(holder.serviceProviderImage);
 
     }
 
