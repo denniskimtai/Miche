@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -11,6 +12,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -19,6 +24,12 @@ public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.
 
     //This is our viewPager
     private ViewPager viewPager;
+
+    private TextView txtUserName, txtCounty, txtSubCounty;
+
+    private LinearLayout profileLayout;
+
+    private ImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,40 @@ public class FarmersHomeActivity extends AppCompatActivity implements TabLayout.
         setSupportActionBar(toolbar);
         final CollapsingToolbarLayout toolBarLayout = findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle("  ");
+
+        txtUserName = findViewById(R.id.user_name);
+        txtCounty = findViewById(R.id.county);
+        txtSubCounty = findViewById(R.id.sub_county);
+
+        profileImage = findViewById(R.id.profile_image);
+
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPrefManager.getInstance(FarmersHomeActivity.this).logout();
+
+
+            }
+        });
+
+        profileLayout = findViewById(R.id.profile);
+
+        profileLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FarmersHomeActivity.this, FarmersProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //getting the current user
+        user userDetails = SharedPrefManager.getInstance(FarmersHomeActivity.this).getUser();
+
+        //set text to the fields
+        txtUserName.setText("Welcome " + userDetails.getfName() + " " + userDetails.getlName());
+        txtCounty.setText(userDetails.getCounty());
+        txtSubCounty.setText(userDetails.getSubCounty());
 
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
         appBarLayout.setExpanded(true);
