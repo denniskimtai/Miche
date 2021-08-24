@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 public class ServiceProviderData {
 
+    private String serviceProviderId;
     private String serviceProviderName;
     private String serviceProviderCounty;
     private String serviceProviderSubCounty;
@@ -9,7 +10,9 @@ public class ServiceProviderData {
     private Boolean selected = false;
 
 
-    public ServiceProviderData(String serviceProviderName, String serviceProviderCounty, String serviceProviderSubCounty, int serviceProviderImage) {
+    public ServiceProviderData(String serviceProviderId, String serviceProviderName, String serviceProviderCounty, String serviceProviderSubCounty, int serviceProviderImage) {
+
+        this.serviceProviderId = serviceProviderId;
         this.serviceProviderName = serviceProviderName;
         this.serviceProviderCounty = serviceProviderCounty;
         this.serviceProviderSubCounty = serviceProviderSubCounty;
@@ -56,5 +59,13 @@ public class ServiceProviderData {
 
         this.selected = b;
 
+    }
+
+    public String getServiceProviderId() {
+        return serviceProviderId;
+    }
+
+    public void setServiceProviderId(String serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
     }
 }

@@ -16,11 +16,14 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,13 +39,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-public class CropDetailsActivity extends AppCompatActivity {
+public class CropDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<ServiceProviderData> serviceProviderDataList;
     private List<tags> tagsList = new ArrayList<>();
@@ -51,12 +55,19 @@ public class CropDetailsActivity extends AppCompatActivity {
     private TextView stepTitle, stepDesc, cropName, txtNoServiceProviders;
 
     private String stepDescriptionText, stepNameText, crop_name, stepId, crop_id;
+    private int clicked_step_no;
+    private ArrayList<stepDesc> list;
 
     private ProgressDialog progressDialog;
     private android.app.AlertDialog.Builder alertDialogBuilder;
 
     private RecyclerView tagsRecyclerView;
     private HorizontalTagsAdapter horizontalTagsAdapter;
+
+    private ImageView btnNext, btnPrev;
+    private ArrayList<stepDesc> stepDescList;
+
+    private SQLiteDatabase mDatabase;
 
     private final String URL_TAGS = "http://limasmart.zuriservices.com/limasmart_app/get_tags.php";
     private final String URL_SERVICE_PROVIDERS = "http://limasmart.zuriservices.com/limasmart_app/get_service_providers.php";
@@ -71,6 +82,11 @@ public class CropDetailsActivity extends AppCompatActivity {
         crop_name = getIntent().getStringExtra("crop_name");
         stepId = getIntent().getStringExtra("step_id");
         crop_id = getIntent().getStringExtra("crop_id");
+        clicked_step_no = getIntent().getIntExtra("clicked_step_no", 0);
+
+        Bundle bundle = getIntent().getExtras();
+        list = bundle.getParcelableArrayList("StepDescList");
+
 
         progressDialog = new ProgressDialog(this);
 
@@ -91,10 +107,16 @@ public class CropDetailsActivity extends AppCompatActivity {
         cropName = findViewById(R.id.crop_name);
         cropName.setText(crop_name);
 
+        btnNext = findViewById(R.id.btn_next);
+        btnNext.setOnClickListener(this);
+
+        btnPrev = findViewById(R.id.btn_prev);
+        btnPrev.setOnClickListener(this);
+
         //initialize views
         recyclerView = findViewById(R.id.recyclerView);
         serviceProviderDataList = new ArrayList<>();
-        serviceProviderListAdapter = new ServiceProviderListAdapter(this, serviceProviderDataList);
+        serviceProviderListAdapter = new ServiceProviderListAdapter(this, serviceProviderDataList, stepId);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -133,6 +155,7 @@ public class CropDetailsActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
                         try {
                             //converting the string to json array object
                             JSONArray array = new JSONArray(response);
@@ -155,11 +178,11 @@ public class CropDetailsActivity extends AppCompatActivity {
                                     String companyName = product.getString("companyName");
                                     String county = product.getString("county");
 
-                                    ServiceProviderData serviceProviderData = new ServiceProviderData(companyName, county, subCounty, Integer.parseInt(serviceProviderId));
+                                    ServiceProviderData serviceProviderData = new ServiceProviderData(serviceProviderId,companyName, county, subCounty, Integer.parseInt(serviceProviderId));
                                     serviceProviderDataList.add(serviceProviderData);
                                 }
 
-                                serviceProviderListAdapter = new ServiceProviderListAdapter(CropDetailsActivity.this, serviceProviderDataList);
+                                serviceProviderListAdapter = new ServiceProviderListAdapter(CropDetailsActivity.this, serviceProviderDataList, stepId);
                                 recyclerView.setAdapter(serviceProviderListAdapter);
                                 progressDialog.dismiss();
 
@@ -202,7 +225,7 @@ public class CropDetailsActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("step_id", stepId);
+                params.put("category_id", stepId);
 
                 return params;
 
@@ -320,5 +343,72 @@ public class CropDetailsActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+        switch (view.getId()){
+
+            case R.id.btn_next:
+
+                if (clicked_step_no < 7){
+
+                    clicked_step_no = clicked_step_no + 1;
+
+                    stepId = String.valueOf(clicked_step_no + 1);
+
+                    serviceProviderDataList.clear();
+                    tagsList.clear();
+
+                    stepDesc stepDescData = list.get(clicked_step_no);
+
+                    //set text
+                    stepTitle.setText(stepDescData.getStepName());
+                    stepDesc.setText(stepDescData.getStepDesc());
+                    cropName.setText(crop_name);
+
+                    stepTags();
+                    loadNews();
+
+                }else {
+
+                    Toast.makeText(this, "This is the last step", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+                break;
+
+            case R.id.btn_prev:
+
+                if (clicked_step_no > 0){
+
+                    clicked_step_no = clicked_step_no - 1;
+
+                    stepId = String.valueOf(clicked_step_no + 1);
+
+                    serviceProviderDataList.clear();
+                    tagsList.clear();
+
+                    stepDesc stepDescData = list.get(clicked_step_no);
+
+                    //set text
+                    stepTitle.setText(stepDescData.getStepName());
+                    stepDesc.setText(stepDescData.getStepDesc());
+                    cropName.setText(crop_name);
+
+                    stepTags();
+                    loadNews();
+
+                }else {
+
+                    Toast.makeText(this, "This is the first step", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+                break;
+
+        }
+
+    }
 }

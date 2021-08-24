@@ -37,6 +37,7 @@
                     android:src="@drawable/orange" />
 
                 <LinearLayout
+                    android:id="@+id/service_provider_details"
                     android:background="@drawable/image_overlay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/service_provider_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Lima Smart"
@@ -56,6 +58,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -85,6 +88,7 @@
                             android:background="@color/white" />
 
                         <TextView
+                            android:id="@+id/email_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -96,6 +100,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/website"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="hortigrid.co.ke/limasmart"
@@ -174,9 +179,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
-            android:visibility="gone"
             app:cardElevation="5dp">
 
             <LinearLayout
@@ -207,18 +212,16 @@
                     android:textColor="@color/dark_grey"
                     android:textSize="12dp" />
 
-                <!--            <TextView-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:text="Edit"-->
-                <!--                android:layout_gravity="right"-->
-                <!--                android:layout_margin="10dp"-->
-                <!--                android:textSize="15dp"-->
-                <!--                android:textColor="@color/colorPrimary"-->
-                <!--                android:paddingLeft="10dp"-->
-                <!--                android:paddingTop="5dp"-->
-                <!--                android:paddingBottom="5dp"-->
-                <!--                android:paddingRight="10dp"/>-->
+                <TextView
+                    android:id="@+id/profile_desc_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Edit"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -290,18 +293,16 @@
                     android:textColor="@color/dark_grey"
                     android:textSize="12dp" />
 
-                <!--            <TextView-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:text="Edit"-->
-                <!--                android:layout_gravity="right"-->
-                <!--                android:layout_margin="10dp"-->
-                <!--                android:textSize="15dp"-->
-                <!--                android:textColor="@color/colorPrimary"-->
-                <!--                android:paddingLeft="10dp"-->
-                <!--                android:paddingTop="5dp"-->
-                <!--                android:paddingBottom="5dp"-->
-                <!--                android:paddingRight="10dp"/>-->
+                <TextView
+                    android:id="@+id/additional_services_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Edit"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -369,18 +370,15 @@
                     android:textColor="@color/dark_grey"
                     android:textSize="12dp" />
 
-                <!--            <TextView-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:text="Edit"-->
-                <!--                android:layout_gravity="right"-->
-                <!--                android:layout_margin="10dp"-->
-                <!--                android:textSize="15dp"-->
-                <!--                android:textColor="@color/colorPrimary"-->
-                <!--                android:paddingLeft="10dp"-->
-                <!--                android:paddingTop="5dp"-->
-                <!--                android:paddingBottom="5dp"-->
-                <!--                android:paddingRight="10dp"/>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Edit"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -449,18 +447,15 @@
                     android:textColor="@color/dark_grey"
                     android:textSize="12dp" />
 
-                <!--            <TextView-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:text="Edit"-->
-                <!--                android:layout_gravity="right"-->
-                <!--                android:layout_margin="10dp"-->
-                <!--                android:textSize="15dp"-->
-                <!--                android:textColor="@color/colorPrimary"-->
-                <!--                android:paddingLeft="10dp"-->
-                <!--                android:paddingTop="5dp"-->
-                <!--                android:paddingBottom="5dp"-->
-                <!--                android:paddingRight="10dp"/>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Edit"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>

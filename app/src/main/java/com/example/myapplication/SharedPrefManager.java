@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 public class SharedPrefManager {
 
@@ -84,5 +85,6 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
         mCtx.startActivity(new Intent(mCtx, LoginActivity.class));
+        Toast.makeText(mCtx, "Signed Out", Toast.LENGTH_SHORT).show();
     }
 }

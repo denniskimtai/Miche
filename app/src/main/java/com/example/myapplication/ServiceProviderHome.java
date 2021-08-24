@@ -42,9 +42,10 @@ public class ServiceProviderHome extends AppCompatActivity implements View.OnCli
 
     private ImageView profileDescAdd, additionalServicesAdd, newsAdd;
 
-    private TextView textViewPhoneNumber, profileDescText, additionalServicesText;
+    private TextView textViewPhoneNumber, profileDescText, additionalServicesText,
+            textViewServiceProviderName, textViewLocation, textViewEmailAddress, textViewWebsite, textViewProfileDescEdit, textViewAdditionalServicesEdit;
 
-    private LinearLayout dottedProfileDesc, dottedAdditionalServices;
+    private LinearLayout dottedProfileDesc, dottedAdditionalServices, serviceProviderDetails;
 
     private CardView cardProfileDesc, cardAdditionalServices;
 
@@ -73,6 +74,9 @@ public class ServiceProviderHome extends AppCompatActivity implements View.OnCli
         newsAdd = findViewById(R.id.news_add);
         newsAdd.setOnClickListener(this);
 
+        serviceProviderDetails = findViewById(R.id.service_provider_details);
+        serviceProviderDetails.setOnClickListener(this);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Saving. Please wait...");
 
@@ -85,6 +89,32 @@ public class ServiceProviderHome extends AppCompatActivity implements View.OnCli
         additionalServicesText = findViewById(R.id.additional_services_text);
 
         textViewPhoneNumber = findViewById(R.id.phone_number);
+        textViewServiceProviderName = findViewById(R.id.service_provider_name);
+        textViewLocation = findViewById(R.id.location);
+        textViewEmailAddress = findViewById(R.id.email_address);
+        textViewWebsite = findViewById(R.id.website);
+
+        //getting the current user
+        user userDetails = SharedPrefManager.getInstance(this).getUser();
+
+        //set text of service provider info
+        textViewPhoneNumber.setText(userDetails.getPhoneNumber());
+        textViewServiceProviderName.setText(userDetails.getCompanyName());
+        textViewLocation.setText(userDetails.getCounty());
+        textViewEmailAddress.setText(userDetails.getEmail());
+
+        if (userDetails.getWebsite().isEmpty()){
+            textViewWebsite.setText("Website not available");
+        }else{
+            textViewWebsite.setText(userDetails.getWebsite());
+        }
+
+
+        textViewProfileDescEdit = findViewById(R.id.profile_desc_edit);
+        textViewProfileDescEdit.setOnClickListener(this);
+
+        textViewAdditionalServicesEdit = findViewById(R.id.additional_services_edit);
+        textViewAdditionalServicesEdit.setOnClickListener(this);
 
         fetchInfo();
 
@@ -116,8 +146,17 @@ public class ServiceProviderHome extends AppCompatActivity implements View.OnCli
                 showCustomDialog("Additional Services", "additional_services");
                 break;
 
-            case R.id.news_add:
-                Toast.makeText(this, "coming soon", Toast.LENGTH_SHORT).show();
+            case R.id.profile_desc_edit:
+                showEditDialog("Profile Description", "profile_desc", profileDescText.getText().toString().trim());
+                break;
+
+            case R.id.additional_services_edit:
+                showEditDialog("Additional Services", "additional_services", additionalServicesText.getText().toString().trim());
+                break;
+
+            case R.id.service_provider_details:
+                Intent intent = new Intent(ServiceProviderHome.this, ServiceProviderProfile.class);
+                startActivity(intent);
                 break;
 
         }
@@ -179,6 +218,8 @@ public class ServiceProviderHome extends AppCompatActivity implements View.OnCli
                                         Toast.makeText(ServiceProviderHome.this, "Saved successfully!", Toast.LENGTH_LONG).show();
                                         alertDialog.dismiss();
 
+                                        fetchInfo();
+
                                         break;
 
                                     case "unsuccessful":
@@ -228,6 +269,113 @@ public class ServiceProviderHome extends AppCompatActivity implements View.OnCli
 
     }
 
+    private void showEditDialog(String title, final String columnName, String editableText){
+
+        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+
+        //then we will inflate the custom alert dialog xml that we created
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
+
+
+        //Now we need an AlertDialog.Builder object
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //setting the view of the builder to our custom view that we already inflated
+        builder.setView(dialogView);
+
+        //finally creating the alert dialog and displaying it
+        final AlertDialog alertDialog = builder.create();
+
+        //onclick listener for button in alert dialog
+
+        TextView titleText = dialogView.findViewById(R.id.title_text);
+        titleText.setText(title);
+
+        final EditText textEditText = dialogView.findViewById(R.id.text);
+        textEditText.setText(editableText);
+
+        Button btnSave = dialogView.findViewById(R.id.btn_save);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //check if field is empty
+                text = textEditText.getText().toString();
+                if (TextUtils.isEmpty(text)) {
+                    textEditText.setError("You have not entered any text. Please type in the box and try again.");
+                    return;
+
+                }
+
+                progressDialog.show();
+
+                //Login and fetch result from database
+                StringRequest stringRequest = new StringRequest(
+                        Request.Method.POST,
+                        SERVICE_PROVIDER_INFO_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                switch (response) {
+
+                                    case "successful":
+
+                                        Toast.makeText(ServiceProviderHome.this, "Saved successfully!", Toast.LENGTH_LONG).show();
+                                        alertDialog.dismiss();
+
+                                        fetchInfo();
+
+                                        break;
+
+                                    case "unsuccessful":
+
+                                        Toast.makeText(ServiceProviderHome.this, "Failed. Ensure your internet connection is good and try again", Toast.LENGTH_LONG).show();
+
+                                        break;
+
+                                }
+
+                                progressDialog.dismiss();
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+
+                        Toast.makeText(ServiceProviderHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }) {
+                    //send params needed to db
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+
+                        //getting the current user
+                        user userDetails = SharedPrefManager.getInstance(ServiceProviderHome.this).getUser();
+
+                        params.put("user_id", String.valueOf(userDetails.getId()));
+                        params.put("field_name", columnName);
+                        params.put("text", text);
+
+                        return params;
+
+                    }
+                };
+
+                Volley.newRequestQueue(ServiceProviderHome.this).add(stringRequest);
+
+            }
+        });
+
+        alertDialog.show();
+
+    }
+
     private void fetchInfo() {
 
         //check if network is connected
@@ -252,7 +400,6 @@ public class ServiceProviderHome extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onResponse(String response) {
 
-                        Toast.makeText(ServiceProviderHome.this, response, Toast.LENGTH_SHORT).show();
                         try {
                             //converting the string to json array object
                             JSONArray array = new JSONArray(response);

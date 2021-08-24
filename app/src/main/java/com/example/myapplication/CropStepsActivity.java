@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.GridLayout;
@@ -29,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +45,7 @@ public class CropStepsActivity extends AppCompatActivity {
 
     private String crop_name, crop_id;
 
-    private List<stepDesc> stepDescList = new ArrayList<>();;
+    private List<stepDesc> stepDescList = new ArrayList<>();
 
     private android.app.AlertDialog.Builder alertDialogBuilder;
 
@@ -106,15 +108,36 @@ public class CropStepsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    stepDesc stepDesc = stepDescList.get(finalI);
+                    if (finalI < 8){
 
-                    Intent intent = new Intent(CropStepsActivity.this, CropDetailsActivity.class);
-                    intent.putExtra("clicked_card", stepDesc.getStepDesc());
-                    intent.putExtra("step_title", stepDesc.getStepName());
-                    intent.putExtra("crop_name", crop_name);
-                    intent.putExtra("step_id", stepDesc.getStepId());
-                    intent.putExtra("crop_id", crop_id);
-                    startActivity(intent);
+                        stepDesc stepDesc = stepDescList.get(finalI);
+
+                        Intent intent = new Intent(CropStepsActivity.this, CropDetailsActivity.class);
+                        intent.putExtra("clicked_card", stepDesc.getStepDesc());
+                        intent.putExtra("step_title", stepDesc.getStepName());
+                        intent.putExtra("crop_name", crop_name);
+                        intent.putExtra("step_id", stepDesc.getStepId());
+                        intent.putExtra("crop_id", crop_id);
+                        intent.putExtra("clicked_step_no", finalI);
+
+                        //pass step descriptions
+                        Bundle bundle = new Bundle();
+                        //add list to Bundle
+                        bundle.putParcelableArrayList("StepDescList", (ArrayList<? extends Parcelable>) stepDescList);
+                        // add Bundle to intent
+                        intent.putExtras(bundle);
+
+                        startActivity(intent);
+
+                    }else{
+
+                        //get summary of all selected service providers go to summary page
+                        Intent intent = new Intent(CropStepsActivity.this, SummaryActivity.class);
+                        startActivity(intent);
+
+
+                    }
+
 
 
                 }

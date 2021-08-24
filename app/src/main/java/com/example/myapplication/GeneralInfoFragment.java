@@ -31,7 +31,7 @@ public class GeneralInfoFragment extends Fragment {
         //initialize views
         recyclerView = myView.findViewById(R.id.recyclerView);
         serviceProviderDataList = new ArrayList<>();
-        serviceProviderListAdapter = new ServiceProviderListAdapter(getActivity(), serviceProviderDataList);
+        serviceProviderListAdapter = new ServiceProviderListAdapter(getActivity(), serviceProviderDataList, "1");
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -50,13 +50,13 @@ public class GeneralInfoFragment extends Fragment {
                 R.drawable.book2
         };
 
-        ServiceProviderData a = new ServiceProviderData("Soil Cares", "Ainabkoi","pH" ,serviceProviderImages[0]);
+        ServiceProviderData a = new ServiceProviderData("2","Soil Cares", "Ainabkoi","pH" ,serviceProviderImages[0]);
         serviceProviderDataList.add(a);
 
-        a = new ServiceProviderData("Lima Smart", "Kenmosa", "Sampling" , serviceProviderImages[1]);
+        a = new ServiceProviderData("2","Lima Smart", "Kenmosa", "Sampling" , serviceProviderImages[1]);
         serviceProviderDataList.add(a);
 
-        a = new ServiceProviderData("Cropnuts", "Kapseret", "Testing" , serviceProviderImages[0]);
+        a = new ServiceProviderData("2","Cropnuts", "Kapseret", "Testing" , serviceProviderImages[0]);
         serviceProviderDataList.add(a);
 
         serviceProviderListAdapter.notifyDataSetChanged();

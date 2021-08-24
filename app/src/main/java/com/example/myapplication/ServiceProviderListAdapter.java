@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +25,9 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<ServiceProv
 
     public Context mContext;
     private List<ServiceProviderData> serviceProviderDataList;
+    private String stepId;
+
+    private SQLiteDatabase mDatabase;
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,9 +52,10 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<ServiceProv
 
     }
 
-    public ServiceProviderListAdapter(Context mContext, List<ServiceProviderData> serviceProviderDataList) {
+    public ServiceProviderListAdapter(Context mContext, List<ServiceProviderData> serviceProviderDataList, String stepId) {
         this.mContext = mContext;
         this.serviceProviderDataList = serviceProviderDataList;
+        this.stepId = stepId;
     }
 
 
@@ -72,24 +79,76 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<ServiceProv
         holder.serviceProviderLocation.setText(serviceProviderData.getServiceProviderCounty());
         holder.serviceProviderTags.setText(serviceProviderData.getServiceProviderSubCounty());
 
+        //################################################
+        //set checked service providers
+        mDatabase = mContext.openOrCreateDatabase("serviceProviderSelectionDB", Context.MODE_PRIVATE, null);
+
+        //we used rawQuery(sql, selectionargs) for fetching all the service providers
+        String sqliteQuery = "SELECT serviceProviderId FROM tblSelection WHERE stepId = ?";
+
+        Cursor cursor = mDatabase.rawQuery(sqliteQuery, new String[] {stepId});
+
+        //if the cursor has some data
+        if (cursor.moveToFirst()) {
+            //looping through all the records
+            do {
+                //pushing each record
+                if (serviceProviderData.getServiceProviderId().equals(String.valueOf(cursor.getInt(0)))){
+
+                    holder.radioButton.setChecked(true);
+                }
+
+            } while (cursor.moveToNext());
+        }
+        //closing the cursor
+        cursor.close();
+
+        //#############################################
+
+
         holder.cardLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext, ServiceProviderHome.class);
-                mContext.startActivity(intent);
+                Toast.makeText(mContext, serviceProviderData.getServiceProviderName(), Toast.LENGTH_SHORT).show();
 
             }
         });
 
 
-        holder.radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.radioButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            public void onClick(View view) {
 
-                holder.radioButton.setChecked(true);
-                notifyDataSetChanged();
+                final boolean isChecked = holder.radioButton.isChecked();
 
+                if (isChecked){
+                    //add to sqlite database
+                    //creating a database
+
+                    mDatabase = mContext.openOrCreateDatabase("serviceProviderSelectionDB", Context.MODE_PRIVATE, null);
+                    createSelectionTable();
+
+                    //insert into table
+                    String insertSQL = "INSERT INTO tblSelection \n" +
+                            "(stepId, serviceProviderId)\n" +
+                            "VALUES \n" +
+                            "(?, ?);";
+
+                    //using the same method execsql for inserting values
+                    //this time it has two parameters
+                    //first is the sql string and second is the parameters that is to be binded with the query
+                    mDatabase.execSQL(insertSQL, new String[]{stepId, serviceProviderData.getServiceProviderId()});
+
+                    Toast.makeText(mContext, "Added Successfully", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    //remove from db
+                    String sql = "DELETE FROM tblSelection WHERE serviceProviderId = ? AND stepId = ?";
+                    mDatabase.execSQL(sql, new String[]{serviceProviderData.getServiceProviderId(), stepId});
+
+                    Toast.makeText(mContext, "removed", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -103,4 +162,40 @@ public class ServiceProviderListAdapter extends RecyclerView.Adapter<ServiceProv
     public int getItemCount() {
         return serviceProviderDataList.size();
     }
+
+    private void readSelectedServiceProviders(){
+
+        mDatabase = mContext.openOrCreateDatabase("serviceProviderSelectionDB", Context.MODE_PRIVATE, null);
+
+        //we used rawQuery(sql, selectionargs) for fetching all the service providers
+        String sqliteQuery = "SELECT serviceProviderId FROM tblSelection WHERE stepId = ?";
+
+        Cursor cursor = mDatabase.rawQuery(sqliteQuery, new String[] {stepId});
+
+        //if the cursor has some data
+        if (cursor.moveToFirst()) {
+            //looping through all the records
+            do {
+                //pushing each record in the employee list
+                cursor.getInt(0);
+
+            } while (cursor.moveToNext());
+        }
+        //closing the cursor
+        cursor.close();
+
+    }
+
+    //In this method we will do the create operation
+
+    private void createSelectionTable() {
+        mDatabase.execSQL(
+                "CREATE TABLE IF NOT EXISTS tblSelection (\n" +
+                        "    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+                        "    stepId varchar(200) NOT NULL,\n" +
+                        "    serviceProviderId varchar(200) NOT NULL\n" +
+                        ");"
+        );
+    }
+
 }

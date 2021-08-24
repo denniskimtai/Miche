@@ -1,6 +1,11 @@
 package com.example.myapplication;
 
-public class stepDesc {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class stepDesc implements Parcelable {
 
     private String stepId, stepName, stepDesc;
 
@@ -11,6 +16,24 @@ public class stepDesc {
         this.stepDesc = stepDesc;
 
     }
+
+    protected stepDesc(Parcel in) {
+        stepId = in.readString();
+        stepName = in.readString();
+        stepDesc = in.readString();
+    }
+
+    public static final Creator<stepDesc> CREATOR = new Creator<stepDesc>() {
+        @Override
+        public stepDesc createFromParcel(Parcel in) {
+            return new stepDesc(in);
+        }
+
+        @Override
+        public stepDesc[] newArray(int size) {
+            return new stepDesc[size];
+        }
+    };
 
     public String getStepName() {
         return stepName;
@@ -34,5 +57,17 @@ public class stepDesc {
 
     public void setStepId(String stepId) {
         this.stepId = stepId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(stepId);
+        parcel.writeString(stepName);
+        parcel.writeString(stepDesc);
     }
 }
